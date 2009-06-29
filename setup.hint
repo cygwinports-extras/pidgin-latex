@@ -1,5 +1,5 @@
 category: Gnome Net
-requires: cygwin glib2 libpurple ImageMagick tetex-bin
+requires: glib2 libpurple ImageMagick tetex-bin
 sdesc: "Pidgin LaTeX code-to-image plugin"
 ldesc: "A plugin for Pidgin which translates LaTeX code into images in
 your IM conversation."
