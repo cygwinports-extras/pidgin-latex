@@ -6,20 +6,15 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 SRC_DIR="${PN}"
 
 src_compile() {
-	local libtool="/usr/bin/libtool --tag=CC --tag=disable-static"
-
 	check_pkg_config PURPLE "purple"
 
 	lndirs
 	cd ${B}
-	${libtool} --mode=compile \
-		gcc ${CFLAGS} ${PURPLE_CFLAGS} -c -o LaTeX.lo LaTeX.c
-	${libtool} --mode=link \
-		gcc ${LDFLAGS} -rpath /usr/lib/pidgin -module -avoid-version -no-undefined -o LaTeX.la LaTeX.lo ${PURPLE_LIBS}
+	${CC} -shared ${CFLAGS} ${PURPLE_CFLAGS} ${LDFLAGS} -o LaTeX.dll LaTeX.c ${PURPLE_LIBS}
 }
 
 src_install() {
 	cd ${B}
 	exeinto /usr/lib/pidgin
-	doexe LaTeX.la
+	doexe LaTeX.dll
 }
