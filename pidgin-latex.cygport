@@ -1,0 +1,27 @@
+inherit utils
+
+NAME="pidgin-latex"
+VERSION=1.3.4
+RELEASE=1
+CATEGORY="Net"
+SUMMARY="Pidgin LaTeX code plugin"
+DESCRIPTION="A plugin for Pidgin which translates LaTeX code into images in
+your IM conversation."
+REQUIRES="texlive-latex-recommended"
+HOMEPAGE="http://sourceforge.net/projects/pidgin-latex/"
+SRC_URI="mirror://sourceforge/pidgin-latex/${NAME}-${VERSION}.tar.bz2"
+SRC_DIR=${NAME}
+
+src_compile() {
+	check_pkg_config PURPLE "purple"
+
+	lndirs
+	cd ${B}
+	${CC} -shared ${CFLAGS} ${PURPLE_CFLAGS} ${LDFLAGS} -o LaTeX.dll LaTeX.c ${PURPLE_LIBS}
+}
+
+src_install() {
+	cd ${B}
+	exeinto /usr/lib/pidgin
+	doexe LaTeX.dll
+}

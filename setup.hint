@@ -1,5 +1,0 @@
-category: Gnome Net
-requires: libgcc1 libglib2.0_0 libpurple0 tetex-bin
-sdesc: "Pidgin LaTeX code plugin"
-ldesc: "A plugin for Pidgin which translates LaTeX code into images in
-your IM conversation."
